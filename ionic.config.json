@@ -1,0 +1,8 @@
+{
+  "name": "Emoji Lexikon",
+  "type": "custom",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  }
+}
