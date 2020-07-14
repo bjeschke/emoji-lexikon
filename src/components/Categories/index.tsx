@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { RouteComponentProps } from "react-router-dom";
 import {
     IonApp,
-    IonBackButton,
     IonButtons,
     IonContent,
     IonHeader,
@@ -13,8 +12,8 @@ import {
     IonPage,
     IonThumbnail,
     IonTitle,
-    IonItem,
-    IonToolbar, IonButtons, IonTitle, IonHeader, IonButton
+    IonToolbar,
+    IonButton
 } from '@ionic/react'
 import { Emoji } from '../../models/emoji';
 import { decode } from "he";
