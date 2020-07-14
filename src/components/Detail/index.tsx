@@ -5,7 +5,8 @@ import {
 } from '@ionic/react'
 import { IonPage,IonContent } from '@ionic/react'
 import { RouteComponentProps } from "react-router-dom";
-import Data from "../Data/whatsappsmileys_de.json"
+
+import Data from "../../resources/whatsappsmileys_de.json"
 import { Route } from 'react-router-dom'
 import {Emoji} from "../../models/emoji";
 import '../../css/detail.css';

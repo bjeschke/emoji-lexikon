@@ -1,5 +1,3 @@
-import {isNullOrUndefined} from "util";
-
 export class Emoji {
     id?: string;
     category!: string;
