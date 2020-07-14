@@ -2,19 +2,23 @@ import React, { Component } from 'react'
 import { RouteComponentProps } from "react-router-dom";
 import {
     IonApp,
+    IonBackButton,
+    IonButtons,
     IonContent,
+    IonHeader,
     IonImg,
-    IonPage,
-    IonThumbnail,
+    IonItem,
     IonLabel,
     IonList,
-    IonItem,
-    IonToolbar, IonButtons, IonBackButton, IonTitle, IonHeader
+    IonPage,
+    IonThumbnail,
+    IonTitle,
+    IonToolbar
 } from '@ionic/react'
 import Data from "../../resources/whatsappsmileys_de.json"
 import { Emoji } from '../../models/emoji';
 import { plainToClass } from "class-transformer";
-import {decode} from "he";
+import { decode } from "he";
 import '../../css/category.css';
 
 interface CategoriesProps extends RouteComponentProps<{
