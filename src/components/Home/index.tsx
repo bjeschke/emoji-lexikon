@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { IonApp, IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import {
+    IonApp,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonContent,
+    IonHeader,
+    IonPage,
+    IonTitle,
+    IonToolbar,
+    IonRouterLink,
+    IonThumbnail, IonImg, IonLabel
+} from '@ionic/react'
 import DataService from '../../services/DataService';
 
 
@@ -12,17 +24,28 @@ class Home extends Component {
                 <IonPage>
                     <IonHeader>
                         <IonToolbar>
-                            <IonTitle>Hallo</IonTitle>
+                            <IonTitle>Kategorien</IonTitle>
                         </IonToolbar>
                     </IonHeader>
                     <IonContent className="ion-padding">
-                        {
-                            categories.map((category:string) => {
-                                return(
-                                    <IonButton routerLink={"/category/" + category} >{category}</IonButton>
-                                )
-                            })
-                        }
+                        <IonGrid>
+                            <IonRow>
+                                {
+                                    categories.map((category:string,index:number) => {
+                                        return(
+                                            <IonCol>
+                                                <IonRouterLink routerLink={"/category/" + category}>
+                                                    <IonThumbnail className="emoji-img-container">
+                                                        <IonImg src={"../img/categories/category_" + category + ".png"}></IonImg>
+                                                    </IonThumbnail>
+                                                    <IonLabel><span className="emoji-name">{category}</span></IonLabel>
+                                                </IonRouterLink>
+                                            </IonCol>
+                                        )
+                                    })
+                                }
+                            </IonRow>
+                        </IonGrid>
                     </IonContent>
                 </IonPage>
             </IonApp>

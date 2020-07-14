@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
-    IonApp,
-    IonButton, IonHeader, IonTitle, IonToolbar,IonImg,IonText,IonThumbnail,IonButtons,IonBackButton
+    IonApp, IonHeader, IonTitle, IonToolbar,IonImg,IonText,IonThumbnail,IonButtons,IonBackButton
 } from '@ionic/react'
 import { IonPage,IonContent } from '@ionic/react'
 import { RouteComponentProps } from "react-router-dom";
@@ -30,11 +29,12 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
 
     render() {
 
-        let emoji = new Emoji;
+        let emoji = new Emoji();
 
         Data.map((item) => {
-            if (item.id == this.state.id) {
+            if (item.id === this.state.id) {
                 emoji = item;
+                return false;
             }
         });
 

@@ -1,0 +1,13 @@
+.listitem{
+    padding:10px 0;
+}
+.emoji-img-container{
+    margin-right:20px;
+}
+.emoji-name{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #004666;
+}
