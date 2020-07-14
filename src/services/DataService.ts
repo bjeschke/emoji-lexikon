@@ -1,4 +1,4 @@
-import Data from "../components/Data/whatsappsmileys_de.json"
+import Data from "../resources/whatsappsmileys_de.json"
 
 
 class DataService {

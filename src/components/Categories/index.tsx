@@ -11,7 +11,7 @@ import {
     IonItem,
     IonToolbar, IonButtons, IonBackButton, IonTitle, IonHeader
 } from '@ionic/react'
-import Data from "../Data/whatsappsmileys_de.json"
+import Data from "../../resources/whatsappsmileys_de.json"
 import { Emoji } from '../../models/emoji';
 import { plainToClass } from "class-transformer";
 import {decode} from "he";
