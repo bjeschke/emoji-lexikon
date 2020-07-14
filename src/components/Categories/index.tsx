@@ -13,7 +13,8 @@ import {
     IonPage,
     IonThumbnail,
     IonTitle,
-    IonToolbar
+    IonItem,
+    IonToolbar, IonButtons, IonTitle, IonHeader, IonButton
 } from '@ionic/react'
 import { Emoji } from '../../models/emoji';
 import { decode } from "he";
@@ -47,7 +48,7 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                     <IonHeader>
                         <IonToolbar>
                             <IonButtons slot="start">
-                                <IonBackButton defaultHref="/" />
+                                <IonButton href="/">Zurück</IonButton>
                             </IonButtons>
                             <IonTitle>
                                 {this.state.category}
@@ -58,6 +59,7 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                         <IonList>
                             {
                                 emojis.map((item: Emoji) => {
+
                                     return(
                                         <IonItem className="listitem" routerLink={"/detail/" + item.id}>
                                             <IonThumbnail className="emoji-img-container">
