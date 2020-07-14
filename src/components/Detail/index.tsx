@@ -8,13 +8,14 @@ import { RouteComponentProps } from "react-router-dom";
 import Data from "../Data/whatsappsmileys_de.json"
 import {Emoji} from "../../models/emoji";
 
+import { decode } from "he";
+
 interface CategoriesProps extends RouteComponentProps<{
     id: string;
 }> {}
 
 interface CategoriesStates {
     id: string;
-
 }
 
 class Detail extends Component<CategoriesProps,CategoriesStates> {
@@ -23,10 +24,8 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
         super(props);
         this.state = {
             id: this.props.match.params.id
-
         };
     }
-
 
     render() {
 
@@ -44,23 +43,22 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
                     <IonHeader>
                         <IonToolbar>
                             <IonTitle>
-                                <>{emoji.htmlcode}</> Bedeutung
+                                  {decode(emoji.htmlcode)} Bedeutung
                             </IonTitle>
                         </IonToolbar>
                     </IonHeader>
                     <IonContent className="ion-padding">
                         <IonTitle>{emoji.title}</IonTitle>
-                        <IonText>{emoji.text}</IonText>
+                        <IonText>{decode(emoji.text)}</IonText>
                         <IonThumbnail>
                             <IonImg src={"https://www.smileybedeutung.com/img/emojis/" + emoji.image + ".png"}></IonImg>
                         </IonThumbnail>
-
-
-
                     </IonContent>
                 </IonPage>
             </IonApp>
         );
+
+
     }
 }
 

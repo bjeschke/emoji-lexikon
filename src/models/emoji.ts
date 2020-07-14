@@ -1,14 +1,14 @@
+import {isNullOrUndefined} from "util";
 
 export class Emoji {
     id?: string;
     category?: string;
-    htmlcode?: string;
+    htmlcode!: string;
     title?: string;
-    text?: string;
+    text!: string;
     image?: string;
     alt?: string;
-    unicode?: string;
+    unicode!: string;
     position?: string;
-
 
 }
