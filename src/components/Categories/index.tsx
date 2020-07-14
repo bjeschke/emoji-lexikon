@@ -9,7 +9,7 @@ import {
     IonLabel,
     IonList,
     IonItem,
-    IonToolbar, IonButtons, IonBackButton, IonTitle, IonHeader
+    IonToolbar, IonButtons, IonTitle, IonHeader, IonButton
 } from '@ionic/react'
 import Data from "../Data/whatsappsmileys_de.json"
 import { Emoji } from '../../models/emoji';
@@ -48,7 +48,7 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                     <IonHeader>
                         <IonToolbar>
                             <IonButtons slot="start">
-                                <IonBackButton defaultHref="/" />
+                                <IonButton href="/">Zurück</IonButton>
                             </IonButtons>
                             <IonTitle>
                                 {this.state.category}
@@ -60,7 +60,7 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
 
                         {
                             emojis.map((item: any) => {
-                                if(item.category == this.state.category)
+                                if(item.category === this.state.category)
                                 {
                                     return(
                                         <IonItem className="listitem" routerLink={"/detail/" + item.id}>
