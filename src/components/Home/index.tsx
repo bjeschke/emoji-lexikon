@@ -13,7 +13,7 @@ import {
     IonThumbnail, IonImg, IonLabel
 } from '@ionic/react'
 import DataService from '../../services/DataService';
-
+import '../../css/home.css';
 
 class Home extends Component {
 
@@ -33,10 +33,10 @@ class Home extends Component {
                                 {
                                     categories.map((category:string,index:number) => {
                                         return(
-                                            <IonCol>
+                                            <IonCol className="col">
                                                 <IonRouterLink routerLink={"/category/" + category}>
                                                     <IonThumbnail className="emoji-img-container">
-                                                        <IonImg src={"../img/categories/category_" + category + ".png"}></IonImg>
+                                                        <IonImg src={require("../img/categories/category_" + category + ".png")}></IonImg>
                                                     </IonThumbnail>
                                                     <IonLabel><span className="emoji-name">{category}</span></IonLabel>
                                                 </IonRouterLink>
