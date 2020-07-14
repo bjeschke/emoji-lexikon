@@ -31,16 +31,20 @@ interface CategoriesStates {
 
 class Categories extends Component<CategoriesProps,CategoriesStates> {
 
-    constructor(props:any) {
+    private emojis: Array<Emoji> = [];
+
+        constructor(props:any) {
         super(props);
         this.state = {
             category: this.props.match.params.category
         };
     }
 
-    render() {
-        const emojis: Array<Emoji> = DataService.getEmojisByCategory(this.state.category);
+    componentDidMount() {
+        this.emojis = DataService.getEmojisByCategory(this.state.category);
+    }
 
+    render() {
         return (
             <IonApp>
                 <IonPage>
@@ -57,8 +61,7 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                     <IonContent>
                         <IonList>
                             {
-                                emojis.map((item: Emoji) => {
-
+                                this.emojis.map((item: Emoji) => {
                                     return(
                                         <IonItem className="listitem" routerLink={"/detail/" + item.id}>
                                             <IonThumbnail className="emoji-img-container">

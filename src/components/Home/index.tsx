@@ -17,8 +17,13 @@ import '../../css/home.css';
 
 class Home extends Component {
 
+    private categories: Array<string> = [];
+
+    componentDidMount() {
+        this.categories = DataService.getCategories();
+    }
+
     render() {
-        const categories: Array<string> = DataService.getCategories();
         return (
             <IonApp>
                 <IonPage>
@@ -31,7 +36,7 @@ class Home extends Component {
                         <IonGrid>
                             <IonRow>
                                 {
-                                    categories.map((category:string,index:number) => {
+                                    this.categories.map((category:string,index:number) => {
                                         return(
                                             <IonCol className="col">
                                                 <IonRouterLink routerLink={"/category/" + category}>
