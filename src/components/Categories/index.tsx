@@ -1,15 +1,9 @@
 import React, { Component } from 'react'
 import { RouteComponentProps } from "react-router-dom";
-import {
-    IonApp,
-    IonButton,
-    IonImg
-} from '@ionic/react'
-import { IonPage,IonContent } from '@ionic/react'
+import { IonApp, IonButton, IonContent, IonPage } from '@ionic/react'
 import Data from "../Data/whatsappsmileys_de.json"
 import { Emoji } from '../../models/emoji';
-import {plainToClass} from "class-transformer";
-import {DataService} from "../../services/DataService";
+import { plainToClass } from "class-transformer";
 
 interface CategoriesProps extends RouteComponentProps<{
     category: string

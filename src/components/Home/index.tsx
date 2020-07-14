@@ -1,39 +1,12 @@
 import React, { Component } from 'react'
-import {
-    IonApp,
-    IonTitle,
-    IonToolbar,
-    IonButton,
-    IonImg
-} from '@ionic/react'
-import { IonPage,IonContent,IonHeader } from '@ionic/react'
-import Data from "../Data/whatsappsmileys_de.json"
-import {Emoji} from "../../models/emoji";
+import { IonApp, IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import DataService from '../../services/DataService';
 
-
-interface Home { cats: string[]; }
-
-let cats = function(){
-    let that: string[] = [];
-    Data.map((item: any) => {
-            if (that.indexOf(item.category) == -1) {
-                that.push(item.category);
-            }
-        }
-    );
-
-    return that;
-};
 
 class Home extends Component {
 
     render() {
-
-        const benjamin: Emoji = new Emoji();
-        benjamin.id = "fotze";
-
-
-
+        const categories: Array<string> = DataService.getCategories();
         return (
             <IonApp>
                 <IonPage>
@@ -43,14 +16,13 @@ class Home extends Component {
                         </IonToolbar>
                     </IonHeader>
                     <IonContent className="ion-padding">
-
-
-                        {cats().map((category:string) => {
-                            return(
-                                <IonButton routerLink={"/category/" + category} >{category}</IonButton>
-                            )
-                        })}
-
+                        {
+                            categories.map((category:string) => {
+                                return(
+                                    <IonButton routerLink={"/category/" + category} >{category}</IonButton>
+                                )
+                            })
+                        }
                     </IonContent>
                 </IonPage>
             </IonApp>
