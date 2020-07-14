@@ -15,11 +15,10 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react'
-import Data from "../../resources/whatsappsmileys_de.json"
 import { Emoji } from '../../models/emoji';
-import { plainToClass } from "class-transformer";
 import { decode } from "he";
 import '../../css/category.css';
+import DataService from '../../services/DataService';
 
 interface CategoriesProps extends RouteComponentProps<{
     category: string
@@ -40,11 +39,7 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
     }
 
     render() {
-        const emojis: Array<Emoji> = [];
-        Data.map((item: any) => {
-            const emoji = plainToClass<Emoji, any>(Emoji, item);
-            emojis.push(emoji);
-        });
+        const emojis: Array<Emoji> = DataService.getEmojisByCategory(this.state.category);
 
         return (
             <IonApp>
@@ -61,11 +56,8 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                     </IonHeader>
                     <IonContent>
                         <IonList>
-
-                        {
-                            emojis.map((item: any) => {
-                                if(item.category == this.state.category)
-                                {
+                            {
+                                emojis.map((item: Emoji) => {
                                     return(
                                         <IonItem className="listitem" routerLink={"/detail/" + item.id}>
                                             <IonThumbnail className="emoji-img-container">
@@ -74,9 +66,8 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                                             <IonLabel><span className="emoji-name">{decode(item.title)}</span></IonLabel>
                                         </IonItem>
                                     );
-                                }
-                            })
-                        }
+                                })
+                            }
                         </IonList>
                     </IonContent>
                 </IonPage>
