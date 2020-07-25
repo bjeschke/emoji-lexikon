@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {
-    IonApp, IonHeader, IonTitle, IonToolbar,IonImg,IonText,IonThumbnail,
-    IonButtons,IonTabs,IonTabBar,IonTabButton,IonIcon,IonLabel,IonRouterOutlet,IonButton
+    IonApp, IonHeader, IonTitle, IonToolbar, IonImg, IonText, IonThumbnail,
+    IonButtons, IonIcon, IonButton, IonFooter
 } from '@ionic/react'
 import { IonPage,IonContent } from '@ionic/react'
 import { RouteComponentProps } from "react-router-dom";
@@ -13,7 +13,7 @@ import '../../css/detail.css';
 import Home from '../Home'
 
 import { decode } from "he";
-import {chevronBack} from "ionicons/icons";
+import {chevronBack, home, settings} from "ionicons/icons";
 
 interface CategoriesProps extends RouteComponentProps<{
     id: string;
@@ -49,8 +49,8 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
         return (
             <IonApp>
                 <IonPage>
-                    <IonHeader>
-                        <IonToolbar>
+                    <IonHeader class="header">
+                        <IonToolbar color="colorful" class="toolbar">
                             <IonButtons slot="start">
                                 <IonButton href={"/category/" + emoji.category}>
                                     <IonIcon className="icon" src={chevronBack}></IonIcon>
@@ -70,19 +70,18 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
                         <IonText className="detail-emoji-text">{decode(emoji.text)}</IonText>
                     </IonContent>
 
-                    <IonTabs>
-                        <IonRouterOutlet>
-                            <Route path='/tabs/:tab(home)' component={Home} exact />
-                        </IonRouterOutlet>
-
-                        <IonTabBar slot="bottom">
-                            <IonTabButton href="/" tab="home">
-                                <IonIcon name="home-outline"></IonIcon>
-                                <IonLabel>Home</IonLabel>
-                            </IonTabButton>
-                        </IonTabBar>
-                    </IonTabs>
-
+                    <IonFooter class="footer">
+                        <IonToolbar color="colorful" class="toolbar">
+                            <IonButtons slot="start">
+                                <IonButton>
+                                    <IonIcon className="icon" src={home}></IonIcon>
+                                </IonButton>
+                                <IonButton>
+                                    <IonIcon className="icon" src={settings}></IonIcon>
+                                </IonButton>
+                            </IonButtons>
+                        </IonToolbar>
+                    </IonFooter>
                 </IonPage>
             </IonApp>
         );

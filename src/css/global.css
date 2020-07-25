@@ -4,5 +4,19 @@ body{
 .ion-page {
     max-width:900px;
     margin:auto;
-
 }
+
+.header{
+    background: linear-gradient(90deg, #00334D 0%, #065E78 100%);
+    opacity: 0.9;
+    color:#fff;
+}
+.footer{
+    background: linear-gradient(90deg, #00334D 0%, #065E78 100%);
+    opacity: 0.9;
+    color:#fff;
+}
+.title-default{
+    text-align: center;
+}
+

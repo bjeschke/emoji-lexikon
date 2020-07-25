@@ -19,7 +19,8 @@ import { decode } from "he";
 import '../../css/global.css';
 import '../../css/category.css';
 import DataService from '../../services/DataService';
-import { chevronForward,chevronBack,apps, list } from 'ionicons/icons';
+import {chevronForward, chevronBack, apps, list, home, settings} from 'ionicons/icons';
+
 
 interface CategoriesProps extends RouteComponentProps<{
     category: string
@@ -58,19 +59,21 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
         this.setState({view: "grid"});
     }
 
-    render() {
+    backHome() {
+        this.props.history.push('/');
+    }
 
-        if(this.state.view === "list") {
+    render() {
             return (
                 <IonApp>
                     <IonPage>
-                        <IonHeader>
-                            <IonToolbar>
+                        <IonHeader class="header">
+                            <IonToolbar color="colorful" class="toolbar">
                                 <IonButtons slot="start">
-                                    <Link to="/">
+                                    <IonButton onClick={() => this.backHome()}>
                                         <IonIcon className="icon" src={chevronBack}></IonIcon>
                                         Zurück
-                                    </Link>
+                                    </IonButton>
                                 </IonButtons>
                                 <IonTitle>
                                     {this.state.category}
@@ -89,84 +92,52 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                             <ul>
                                 {
                                     this.emojis.map((item: Emoji) => {
-                                        return (
-                                            <li className="listitem">
-                                                <Link to={"/detail/" + item.id}>
-                                                    <IonThumbnail className="emoji-img-container">
-                                                        <IonImg className="detail-emoji-image"
-                                                                src={"https://www.smileybedeutung.com/img/emojis/" + item.image + ".png"}></IonImg>
-                                                    </IonThumbnail>
-                                                    <IonLabel className="emoji-label"><span
-                                                        className="emoji-name">{decode(item.title)}</span></IonLabel>
-                                                    <IonIcon className="icon" src={chevronForward}></IonIcon>
-                                                </Link>
-                                            </li>
-                                        );
+                                        if(this.state.view === "list")
+                                        {
+                                            return (
+                                                <li className="listitem">
+                                                    <Link to={"/detail/" + item.id}>
+                                                        <IonThumbnail className="emoji-img-container">
+                                                            <IonImg className="detail-emoji-image"
+                                                                    src={"https://www.smileybedeutung.com/img/emojis/" + item.image + ".png"}></IonImg>
+                                                        </IonThumbnail>
+                                                        <IonLabel className="emoji-label"><span
+                                                            className="emoji-name">{decode(item.title)}</span></IonLabel>
+                                                        <IonIcon className="icon" src={chevronForward}></IonIcon>
+                                                    </Link>
+                                                </li>
+                                            );
+                                        }
+                                        else{
+                                            return(
+                                                <div className="emojibox">
+                                                    <Link to={"/detail/" + item.id}>
+                                                        <IonThumbnail className="emoji-img-container">
+                                                            <IonImg className="detail-emoji-image" src={"https://www.smileybedeutung.com/img/emojis/" + item.image + ".png"}></IonImg>
+                                                        </IonThumbnail>
+                                                    </Link>
+                                                </div>
+                                            );
+                                        }
                                     })
                                 }
                             </ul>
                         </IonContent>
-                        <IonFooter>
-                            <IonToolbar>
-                                <IonTitle>Footer</IonTitle>
-                            </IonToolbar>
-                        </IonFooter>
-                    </IonPage>
-                </IonApp>
-            );
-        }
-        else{
-            return (
-                <IonApp>
-                    <IonPage>
-                        <IonHeader>
-                            <IonToolbar>
+                        <IonFooter class="footer">
+                            <IonToolbar color="colorful" class="toolbar">
                                 <IonButtons slot="start">
-                                    <Link to="/">
-                                        <IonIcon className="icon" src={chevronBack}></IonIcon>
-                                        Zurück
-                                    </Link>
-                                </IonButtons>
-                                <IonTitle>
-                                    {this.state.category}
-                                </IonTitle>
-                                <IonButtons slot="end">
-                                    <IonButton onClick={this.changeViewToList.bind(this)}>
-                                        <IonIcon className="icon" src={list}></IonIcon>
+                                    <IonButton>
+                                        <IonIcon className="icon" src={home}></IonIcon>
                                     </IonButton>
-                                    <IonButton onClick={this.changeViewToGrid.bind(this)}>
-                                        <IonIcon className="icon" src={apps}></IonIcon>
+                                    <IonButton>
+                                        <IonIcon className="icon" src={settings}></IonIcon>
                                     </IonButton>
                                 </IonButtons>
-                            </IonToolbar>
-                        </IonHeader>
-                        <IonContent>
-
-                            {
-                                this.emojis.map((item: Emoji) => {
-                                    return(
-                                        <div className="emojibox">
-                                            <Link to={"/detail/" + item.id}>
-                                                <IonThumbnail className="emoji-img-container">
-                                                    <IonImg className="detail-emoji-image" src={"https://www.smileybedeutung.com/img/emojis/" + item.image + ".png"}></IonImg>
-                                                </IonThumbnail>
-                                            </Link>
-                                        </div>
-                                    );
-                                })
-                            }
-
-                        </IonContent>
-                        <IonFooter>
-                            <IonToolbar>
-                                <IonTitle>Footer</IonTitle>
                             </IonToolbar>
                         </IonFooter>
                     </IonPage>
                 </IonApp>
             );
-
-        }
     }
 }
 

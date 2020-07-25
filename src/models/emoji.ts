@@ -5,8 +5,7 @@ export class Emoji {
     title!: string;
     text!: string;
     image!: string;
-    alt?: string;
+    alt!: string;
     unicode!: string;
     position!: string;
-
 }

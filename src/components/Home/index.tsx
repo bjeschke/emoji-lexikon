@@ -10,10 +10,11 @@ import {
     IonTitle,
     IonToolbar,
     IonRouterLink,
-    IonThumbnail, IonImg, IonLabel,IonFooter
+    IonThumbnail, IonImg, IonLabel, IonFooter, IonButton, IonIcon, IonButtons
 } from '@ionic/react'
 import DataService from '../../services/DataService';
 import '../../css/home.css';
+import {settings, home} from "ionicons/icons";
 
 class Home extends Component {
 
@@ -28,9 +29,9 @@ class Home extends Component {
         return (
             <IonApp>
                 <IonPage>
-                    <IonHeader>
-                        <IonToolbar>
-                            <IonTitle>Kategorien</IonTitle>
+                    <IonHeader class="header">
+                        <IonToolbar color="colorful" class="toolbar">
+                            <IonTitle>Emoji Lexikon</IonTitle>
                         </IonToolbar>
                     </IonHeader>
                     <IonContent className="ion-padding">
@@ -54,9 +55,16 @@ class Home extends Component {
                             </IonRow>
                         </IonGrid>
                     </IonContent>
-                    <IonFooter>
-                        <IonToolbar>
-                            <IonTitle>Footer</IonTitle>
+                    <IonFooter class="footer">
+                        <IonToolbar color="colorful" class="toolbar">
+                            <IonButtons slot="start">
+                                <IonButton>
+                                    <IonIcon className="icon" src={home}></IonIcon>
+                                </IonButton>
+                                <IonButton>
+                                    <IonIcon className="icon" src={settings}></IonIcon>
+                                </IonButton>
+                            </IonButtons>
                         </IonToolbar>
                     </IonFooter>
                 </IonPage>
