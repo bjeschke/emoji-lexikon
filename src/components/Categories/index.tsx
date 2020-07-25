@@ -1,4 +1,4 @@
-import React, { Component,Suspense, lazy } from 'react'
+import React, { Component} from 'react'
 import { RouteComponentProps, Link } from "react-router-dom";
 import {
     IonApp,
@@ -131,12 +131,12 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                                     {this.state.category}
                                 </IonTitle>
                                 <IonButtons slot="end">
-                                    <Link to={"/category/" + this.state.category}>
+                                    <IonButton onClick={this.changeViewToList.bind(this)}>
                                         <IonIcon className="icon" src={list}></IonIcon>
-                                    </Link>
-                                    <Link to={"/category-grind/" + this.state.category}>
+                                    </IonButton>
+                                    <IonButton onClick={this.changeViewToGrid.bind(this)}>
                                         <IonIcon className="icon" src={apps}></IonIcon>
-                                    </Link>
+                                    </IonButton>
                                 </IonButtons>
                             </IonToolbar>
                         </IonHeader>
