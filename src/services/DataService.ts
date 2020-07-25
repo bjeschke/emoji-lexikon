@@ -1,4 +1,5 @@
 import Data from "../resources/whatsappsmileys_de.json"
+import Categories from "../resources/categories.json"
 import { Emoji } from '../models/emoji';
 import { plainToClass } from 'class-transformer';
 

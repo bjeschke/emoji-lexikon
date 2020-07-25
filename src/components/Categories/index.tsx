@@ -63,6 +63,10 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
         this.props.history.push('/detail/' + id);
     }
 
+    public goToSettings(){
+        this.props.history.push('/settings/');
+    }
+
     render() {
             return (
                 <IonApp>
@@ -128,7 +132,7 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                                     <IonButton>
                                         <IonIcon className="icon" src={star}></IonIcon>
                                     </IonButton>
-                                    <IonButton>
+                                    <IonButton onClick={() => this.goToSettings()}>
                                         <IonIcon className="icon" src={settings}></IonIcon>
                                     </IonButton>
                                 </IonButtons>

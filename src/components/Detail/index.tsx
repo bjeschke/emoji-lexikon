@@ -32,6 +32,10 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
         };
     }
 
+    public goToSettings(){
+        this.props.history.push('/settings/');
+    }
+
     backHome() {
         this.props.history.push('/');
     }
@@ -86,7 +90,7 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
                                 <IonButton>
                                     <IonIcon className="icon" src={star}></IonIcon>
                                 </IonButton>
-                                <IonButton>
+                                <IonButton onClick={() => this.goToSettings()}>
                                     <IonIcon className="icon" src={settings}></IonIcon>
                                 </IonButton>
                             </IonButtons>

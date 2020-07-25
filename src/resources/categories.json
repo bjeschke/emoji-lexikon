@@ -1,0 +1,32 @@
+[
+    {
+    "menschen": {
+      "de": "Menschen",
+      "en": "People"
+    },
+    "natur":{
+      "de": "Tiere & Natur",
+      "en": "Nature"
+    },
+    "aktiv": {
+      "de": "Aktivitäten",
+      "en": "Active"
+    },
+    "essen": {
+      "de": "Essen & Trinken",
+      "en": "Eat"
+    },
+    "reisen": {
+      "de": "Reisen & Orte",
+      "en": "Travel & Places"
+    },
+    "objekte": {
+      "de": "Objekte",
+      "en": "objects"
+    },
+    "symbole": {
+      "de": "Symbole",
+      "en": "Symbols"
+    }
+  }
+]
