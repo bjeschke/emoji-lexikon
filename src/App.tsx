@@ -6,6 +6,7 @@ import { IonReactRouter } from '@ionic/react-router'
 import { Route } from 'react-router-dom'
 import Home from './components/Home'
 import Categories from './components/Categories'
+import Grind from './components/Categories/grind'
 import Detail from './components/Detail'
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -30,6 +31,7 @@ function App() {
           <IonRouterOutlet>
             <Route path="/" component={Home} exact />
             <Route path="/category/:category" component={Categories} exact />
+            <Route path="/category-grind/:category" component={Grind} exact />
             <Route path="/detail/:id" component={Detail} exact />
           </IonRouterOutlet>
         </IonReactRouter>

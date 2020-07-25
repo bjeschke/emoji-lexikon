@@ -1,4 +1,4 @@
-import React, { Component,Suspense, lazy } from 'react'
+import React, { Component } from 'react'
 import { RouteComponentProps, Link } from "react-router-dom";
 import {
     IonApp,
@@ -6,7 +6,6 @@ import {
     IonContent,
     IonHeader,
     IonImg,
-    IonLabel,
     IonPage,
     IonThumbnail,
     IonTitle,
@@ -15,40 +14,45 @@ import {
     IonIcon, IonFooter
 } from '@ionic/react'
 import { Emoji } from '../../models/emoji';
-import { decode } from "he";
 import '../../css/global.css';
 import '../../css/category.css';
 import DataService from '../../services/DataService';
-import { chevronForward,chevronBack,apps, list } from 'ionicons/icons';
+import { chevronBack,apps, list } from 'ionicons/icons';
 
-interface CategoriesProps extends RouteComponentProps<{
+interface GrindProps extends RouteComponentProps<{
     category: string
 }> {}
 
-interface CategoriesStates {
-    category: string
+interface GrindStates {
+    category: string,
+    loading: boolean
+
 }
 
-class Categories extends Component<CategoriesProps,CategoriesStates> {
+class Grind extends Component<GrindProps,GrindStates> {
 
     private emojis: Array<Emoji> = [];
 
     constructor(props:any) {
         super(props);
         this.state = {
-            category: this.props.match.params.category
+            category: this.props.match.params.category,
+            loading: true
         };
     }
 
     componentWillMount() {
-        this.emojis = DataService.getEmojisByCategory(this.state.category);
+        this.setState({loading: true});
     }
 
     componentDidMount() {
-
+        this.emojis = DataService.getEmojisByCategory(this.state.category);
+        this.setState({loading: false});
     }
 
     render() {
+        if (this.state.loading === true) return (<div>Läd</div>);
+
         return (
             <IonApp>
                 <IonPage>
@@ -64,7 +68,7 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                                 {this.state.category}
                             </IonTitle>
                             <IonButtons slot="end">
-                                <Link to="/">
+                                <Link to={"/category/" + this.state.category}>
                                     <IonIcon className="icon" src={list}></IonIcon>
                                 </Link>
                                 <Link to={"/category-grind/" + this.state.category}>
@@ -74,23 +78,21 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                         </IonToolbar>
                     </IonHeader>
                     <IonContent>
-                        <ul>
+
                             {
                                 this.emojis.map((item: Emoji) => {
                                     return(
-                                        <li className="listitem" >
+                                        <div className="emojibox">
                                             <Link to={"/detail/" + item.id}>
                                                 <IonThumbnail className="emoji-img-container">
                                                     <IonImg className="detail-emoji-image" src={"https://www.smileybedeutung.com/img/emojis/" + item.image + ".png"}></IonImg>
                                                 </IonThumbnail>
-                                                <IonLabel className="emoji-label"><span className="emoji-name">{decode(item.title)}</span></IonLabel>
-                                                <IonIcon className="icon" src={chevronForward}></IonIcon>
                                             </Link>
-                                        </li>
+                                        </div>
                                     );
                                 })
                             }
-                        </ul>
+
                     </IonContent>
                     <IonFooter>
                         <IonToolbar>
@@ -103,4 +105,4 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
     }
 }
 
-export default Categories
+export default Grind

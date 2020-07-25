@@ -13,13 +13,16 @@ import '../../css/detail.css';
 import Home from '../Home'
 
 import { decode } from "he";
+import {chevronBack} from "ionicons/icons";
 
 interface CategoriesProps extends RouteComponentProps<{
     id: string;
+    category:string;
 }> {}
 
 interface CategoriesStates {
     id: string;
+    category:string;
 }
 
 class Detail extends Component<CategoriesProps,CategoriesStates> {
@@ -27,7 +30,8 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
     constructor(props:any) {
         super(props);
         this.state = {
-            id: this.props.match.params.id
+            id: this.props.match.params.id,
+            category: this.props.match.params.category
         };
     }
 
@@ -48,7 +52,10 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
                     <IonHeader>
                         <IonToolbar>
                             <IonButtons slot="start">
-                                <IonButton href={"/category/" + emoji.category}>Zurück</IonButton>
+                                <IonButton href={"/category/" + emoji.category}>
+                                    <IonIcon className="icon" src={chevronBack}></IonIcon>
+                                    Zurück
+                                </IonButton>
                             </IonButtons>
                             <IonTitle>
                                 {decode(emoji.htmlcode)} Bedeutung

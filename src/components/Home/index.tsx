@@ -10,7 +10,7 @@ import {
     IonTitle,
     IonToolbar,
     IonRouterLink,
-    IonThumbnail, IonImg, IonLabel
+    IonThumbnail, IonImg, IonLabel,IonFooter
 } from '@ionic/react'
 import DataService from '../../services/DataService';
 import '../../css/home.css';
@@ -24,6 +24,7 @@ class Home extends Component {
     }
 
     render() {
+
         return (
             <IonApp>
                 <IonPage>
@@ -49,9 +50,15 @@ class Home extends Component {
                                         )
                                     })
                                 }
+
                             </IonRow>
                         </IonGrid>
                     </IonContent>
+                    <IonFooter>
+                        <IonToolbar>
+                            <IonTitle>Footer</IonTitle>
+                        </IonToolbar>
+                    </IonFooter>
                 </IonPage>
             </IonApp>
         );
