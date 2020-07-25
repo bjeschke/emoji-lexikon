@@ -5,15 +5,12 @@ import {
 } from '@ionic/react'
 import { IonPage,IonContent } from '@ionic/react'
 import { RouteComponentProps } from "react-router-dom";
-
 import Data from "../../resources/whatsappsmileys_de.json"
-import { Route } from 'react-router-dom'
 import {Emoji} from "../../models/emoji";
 import '../../css/detail.css';
-import Home from '../Home'
 
 import { decode } from "he";
-import {chevronBack, home, settings} from "ionicons/icons";
+import {chevronBack, home, settings, starOutline, star} from "ionicons/icons";
 
 interface CategoriesProps extends RouteComponentProps<{
     id: string;
@@ -33,6 +30,10 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
             id: this.props.match.params.id,
             category: this.props.match.params.category
         };
+    }
+
+    backHome() {
+        this.props.history.push('/');
     }
 
     render() {
@@ -60,6 +61,12 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
                             <IonTitle>
                                 {decode(emoji.htmlcode)} Bedeutung
                             </IonTitle>
+                            <IonButtons slot="end">
+                                <IonButton>
+                                    <IonIcon className="icon" src={starOutline}></IonIcon>
+                                </IonButton>
+
+                            </IonButtons>
                         </IonToolbar>
                     </IonHeader>
                     <IonContent className="ion-padding content">
@@ -72,9 +79,12 @@ class Detail extends Component<CategoriesProps,CategoriesStates> {
 
                     <IonFooter class="footer">
                         <IonToolbar color="colorful" class="toolbar">
-                            <IonButtons slot="start">
-                                <IonButton>
+                            <IonButtons slot="start" class="footertabs">
+                                <IonButton onClick={() => this.backHome()}>
                                     <IonIcon className="icon" src={home}></IonIcon>
+                                </IonButton>
+                                <IonButton>
+                                    <IonIcon className="icon" src={star}></IonIcon>
                                 </IonButton>
                                 <IonButton>
                                     <IonIcon className="icon" src={settings}></IonIcon>

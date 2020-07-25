@@ -16,7 +16,7 @@ class DataService {
 
         this.categories = new Array<string>();
         Data.map(item => {
-                if (this.categories.indexOf(item.category) == -1) {
+                if (this.categories.indexOf(item.category) === -1) {
                     this.categories.push(item.category);
                 }
             }

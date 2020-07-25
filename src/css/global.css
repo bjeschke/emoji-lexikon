@@ -19,4 +19,12 @@ body{
 .title-default{
     text-align: center;
 }
+.footertabs{
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.footer .button{
+    font-size:22px;
+}
 

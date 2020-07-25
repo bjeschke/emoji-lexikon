@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import {
     IonApp,
-    IonGrid,
-    IonRow,
-    IonCol,
     IonContent,
     IonHeader,
     IonPage,
@@ -14,14 +11,27 @@ import {
 } from '@ionic/react'
 import DataService from '../../services/DataService';
 import '../../css/home.css';
-import {settings, home} from "ionicons/icons";
+import {settings, home,star} from "ionicons/icons";
+import {RouteComponentProps} from "react-router-dom";
 
-class Home extends Component {
+interface CategoriesProps extends RouteComponentProps<{
+
+}> {}
+
+interface CategoriesStates {
+
+}
+
+class Home extends Component<CategoriesProps,CategoriesStates> {
 
     private categories: Array<string> = [];
 
     componentDidMount() {
         this.categories = DataService.getCategories();
+    }
+
+    public goToCategoryView(category: string){
+        this.props.history.push('/category/' + category);
     }
 
     render() {
@@ -35,31 +45,27 @@ class Home extends Component {
                         </IonToolbar>
                     </IonHeader>
                     <IonContent className="ion-padding">
-                        <IonGrid>
-                            <IonRow>
-                                {
-                                    this.categories.map((category:string,index:number) => {
-                                        return(
-                                            <IonCol className="col">
-                                                <IonRouterLink routerLink={"/category/" + category}>
-                                                    <IonThumbnail className="emoji-img-container">
-                                                        <IonImg src={require("../img/categories/category_" + category + ".png")}></IonImg>
-                                                    </IonThumbnail>
-                                                    <IonLabel><span className="emoji-name">{category}</span></IonLabel>
-                                                </IonRouterLink>
-                                            </IonCol>
-                                        )
-                                    })
-                                }
-
-                            </IonRow>
-                        </IonGrid>
+                        {
+                            this.categories.map((category:string, index:number) => {
+                                return(
+                                    <div className="col" key={index} onClick={() => this.goToCategoryView(category)}>
+                                        <IonThumbnail className="emoji-img-container">
+                                            <IonImg src={require("../img/categories/category_" + category + ".png")}></IonImg>
+                                        </IonThumbnail>
+                                        <IonLabel class="label"><span className="emoji-name">{category}</span></IonLabel>
+                                    </div>
+                                )
+                            })
+                        }
                     </IonContent>
                     <IonFooter class="footer">
                         <IonToolbar color="colorful" class="toolbar">
-                            <IonButtons slot="start">
+                            <IonButtons slot="start" class="footertabs">
                                 <IonButton>
                                     <IonIcon className="icon" src={home}></IonIcon>
+                                </IonButton>
+                                <IonButton>
+                                    <IonIcon className="icon" src={star}></IonIcon>
                                 </IonButton>
                                 <IonButton>
                                     <IonIcon className="icon" src={settings}></IonIcon>

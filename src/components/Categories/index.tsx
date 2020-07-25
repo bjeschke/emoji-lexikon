@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import { RouteComponentProps, Link } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 import {
     IonApp,
     IonButtons,
@@ -19,7 +19,7 @@ import { decode } from "he";
 import '../../css/global.css';
 import '../../css/category.css';
 import DataService from '../../services/DataService';
-import {chevronForward, chevronBack, apps, list, home, settings} from 'ionicons/icons';
+import {chevronForward, chevronBack, apps, list, home, settings,star} from 'ionicons/icons';
 
 
 interface CategoriesProps extends RouteComponentProps<{
@@ -47,10 +47,6 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
         this.emojis = DataService.getEmojisByCategory(this.state.category);
     }
 
-    componentDidMount() {
-
-    }
-
     public changeViewToList(){
         this.setState({view: "list"});
     }
@@ -61,6 +57,10 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
 
     backHome() {
         this.props.history.push('/');
+    }
+
+    public goToDetailView(id: string | undefined){
+        this.props.history.push('/detail/' + id);
     }
 
     render() {
@@ -91,31 +91,27 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                         <IonContent>
                             <ul>
                                 {
-                                    this.emojis.map((item: Emoji) => {
+                                    this.emojis.map((item: Emoji, index: number) => {
                                         if(this.state.view === "list")
                                         {
                                             return (
-                                                <li className="listitem">
-                                                    <Link to={"/detail/" + item.id}>
-                                                        <IonThumbnail className="emoji-img-container">
-                                                            <IonImg className="detail-emoji-image"
-                                                                    src={"https://www.smileybedeutung.com/img/emojis/" + item.image + ".png"}></IonImg>
-                                                        </IonThumbnail>
-                                                        <IonLabel className="emoji-label"><span
-                                                            className="emoji-name">{decode(item.title)}</span></IonLabel>
-                                                        <IonIcon className="icon" src={chevronForward}></IonIcon>
-                                                    </Link>
+                                                <li className="listitem" key={index} onClick={() => this.goToDetailView(item.id)}>
+                                                    <IonThumbnail className="emoji-img-container">
+                                                        <IonImg className="detail-emoji-image"
+                                                                src={"https://www.smileybedeutung.com/img/emojis/" + item.image + ".png"}></IonImg>
+                                                    </IonThumbnail>
+                                                    <IonLabel className="emoji-label"><span
+                                                        className="emoji-name">{decode(item.title)}</span></IonLabel>
+                                                    <IonIcon className="icon" src={chevronForward}></IonIcon>
                                                 </li>
                                             );
                                         }
                                         else{
                                             return(
-                                                <div className="emojibox">
-                                                    <Link to={"/detail/" + item.id}>
-                                                        <IonThumbnail className="emoji-img-container">
-                                                            <IonImg className="detail-emoji-image" src={"https://www.smileybedeutung.com/img/emojis/" + item.image + ".png"}></IonImg>
-                                                        </IonThumbnail>
-                                                    </Link>
+                                                <div className="emojibox" key={index} onClick={() => this.goToDetailView(item.id)}>
+                                                    <IonThumbnail className="emoji-img-container">
+                                                        <IonImg className="detail-emoji-image" src={"https://www.smileybedeutung.com/img/emojis/" + item.image + ".png"}></IonImg>
+                                                    </IonThumbnail>
                                                 </div>
                                             );
                                         }
@@ -125,9 +121,12 @@ class Categories extends Component<CategoriesProps,CategoriesStates> {
                         </IonContent>
                         <IonFooter class="footer">
                             <IonToolbar color="colorful" class="toolbar">
-                                <IonButtons slot="start">
-                                    <IonButton>
+                                <IonButtons slot="start" class="footertabs">
+                                    <IonButton onClick={() => this.backHome()}>
                                         <IonIcon className="icon" src={home}></IonIcon>
+                                    </IonButton>
+                                    <IonButton>
+                                        <IonIcon className="icon" src={star}></IonIcon>
                                     </IonButton>
                                     <IonButton>
                                         <IonIcon className="icon" src={settings}></IonIcon>
